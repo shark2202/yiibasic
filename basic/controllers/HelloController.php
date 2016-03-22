@@ -65,4 +65,24 @@ class HelloController extends Controller{
         $command3 = $primaryConnection->createCommand("select code from country");
         $countries_code = $command3->queryColumn();//获取的是单列的值
     }
+
+    /**
+     * 数据库支持事务操作
+     */
+    public function actionDbt()
+    {
+        $db = Yii::$app->getDb();//直接表明需要获取的对象  $db = Yii::$app->db;
+        $transaction = $db->beginTransaction();//获取开启可事务的链接
+        try{//在事务中运行
+            $sql1 = "insert into country ";
+            $commond1 = $db->createCommand()->execute();//只有修改才要有事务
+
+
+
+        }catch (Exception $e){
+
+        }
+
+
+    }
 }
